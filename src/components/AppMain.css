@@ -1,0 +1,20 @@
+.container-form {
+  width: 40%;
+  margin: auto;
+}
+
+input {
+  display: flex;
+  flex: auto;
+  padding: 10px;
+  border: 0;
+}
+
+.trash-icon {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  i {
+    color: rgb(178, 178, 178);
+  }
+}
