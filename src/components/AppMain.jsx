@@ -6,19 +6,21 @@ export default function AppMain() {
   const [articoli, setArticoli] = useState([]);
   const [titolo, setTitolo] = useState("");
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
 
     setArticoli([{ id: Date.now(), titolo }, ...articoli]);
 
     setTitolo("");
-  };
+  }
 
-  const deleteArticoli = (e) => {
+  function deleteArticoli(e) {
     const dataIndex = e.target.getAttribute("data-index");
-    const newArticoli = articoli.filter((articolo, index) => dataIndex != index);
+    const newArticoli = articoli.filter(
+      (articolo, index) => dataIndex != index
+    );
     setArticoli(newArticoli);
-  };
+  }
 
   return (
     <div className="container-form">
@@ -26,7 +28,7 @@ export default function AppMain() {
 
       <form className="d-flex gap-4 mb-4" onSubmit={handleSubmit}>
         <input
-        className="rounded"
+          className="rounded"
           type="text"
           value={titolo}
           onChange={(e) => setTitolo(e.target.value)}
@@ -39,15 +41,19 @@ export default function AppMain() {
 
       <ul className="list-group">
         {articoli.map((articolo, index) => (
-            <li
-                key={index}
-                className="list-group-item d-flex justify-content-between mt-2 mb-2 rounded"
+          <li
+            key={index}
+            className="list-group-item d-flex justify-content-between mt-2 mb-2 rounded"
+          >
+            {articolo.titolo}{" "}
+            <button
+              className="trash-icon"
+              data-index={index}
+              onClick={deleteArticoli}
             >
-                {articolo.titolo}{" "}
-                <button className="trash-icon" data-index={index} onClick={deleteArticoli}>
-                    <i className="bi bi-trash"></i>
-                </button>
-            </li>
+              <i className="bi bi-trash"></i>
+            </button>
+          </li>
         ))}
       </ul>
     </div>
